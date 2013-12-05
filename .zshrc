@@ -86,5 +86,5 @@ PS1="${darkred}%n${nocolor}@${green}%m${nocolor}:${magenta}%~${nocolor}%#${nocol
 export EDITOR=vim
 
 tmpHost=`hostname`
-echo -ne "\033]0;Azmiut- ${tmpHost}\007"
+echo -ne "\033]0;AGEPoly - ${tmpHost}\007"
 

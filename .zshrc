@@ -1,7 +1,10 @@
+# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
 
 autoload -Uz compinit
 compinit
@@ -14,6 +17,7 @@ autoload terminfo colors
 colors
 watch=all
 
+
 ## Completion
 zstyle :compinstall filename "$HOME/.zshrc"
 zstyle ':completion:*:*:cd:*' tag-order local-directories path-directories
@@ -25,24 +29,24 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 
 # Completion Menu for kill
-zstyle ':completion:*:*:kill:*' menu yes select
-# Cache
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path ~/.zsh/cache
+ zstyle ':completion:*:*:kill:*' menu yes select
+ # Cache
+ zstyle ':completion::complete:*' use-cache on
+ zstyle ':completion::complete:*' cache-path ~/.zsh/cache
 
-### Bind keys
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
-# Delete
-bindkey '^[[3~' delete-char
-# PageUp/PageDown and Home/End
-bindkey '^[[5~' history-search-backward
-bindkey '^[[6~' history-search-forward
-bindkey '^[[7~' beginning-of-line
-bindkey '^[[4~' end-of-line
-# GNU Screen !?!
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[8~' end-of-line
+ ### Bind keys
+ bindkey "^R" history-incremental-search-backward
+ bindkey "^S" history-incremental-search-forward
+ # Delete
+ bindkey '^[[3~' delete-char
+ # PageUp/PageDown and Home/End
+ bindkey '^[[5~' history-search-backward
+ bindkey '^[[6~' history-search-forward
+ bindkey '^[[7~' beginning-of-line
+ bindkey '^[[4~' end-of-line
+ # GNU Screen !?!
+ bindkey '^[[1~' beginning-of-line
+ bindkey '^[[8~' end-of-line
 
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
@@ -54,6 +58,8 @@ esac
 alias ls='ls --color=auto'
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
+
+# some more ls aliases
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
@@ -62,7 +68,7 @@ alias vi=vim
 for f in /etc/DIR_COLORS ${HOME}/.dir_colors; do
     [ -f "$f" ] && eval `dircolors -b "$f"`
 done
-
+# GNU ls/grep colors
 alias grep="grep --color=auto"
 
 setopt transient_rprompt
@@ -81,10 +87,20 @@ local darkred="%{$nocolor$fg[red]%}"
 local darkblue="%{$nocolor$fg[blue]%}"
 local darkcyan="%{$nocolor$fg[cyan]%}"
 local magenta="%{$nocolor$fg[magenta]%}"
-PS1="${darkred}%n${nocolor}@${green}%m${nocolor}:${magenta}%~${nocolor}%#${nocolor} "
+
+#PS1="${darkred}%n${nocolor}@${green}%m${nocolor}:${magenta}%~${nocolor}%#${nocolor} "
 
 export EDITOR=vim
 
-tmpHost=`hostname`
-echo -ne "\033]0;AGEPoly - ${tmpHost}\007"
+ZSH=$HOME/.zsh/oh-my-zsh
+ZSH_THEME="agnoster"
 
+plugins=(zsh-syntax-highlighting)
+
+ZSH_THEME_DISABLE_SPECIAL_PROMPT="yes"
+ZSH_THEME_DISABLE_GIT="yes"
+
+# Uncomment to load git plugin
+#source ~/.zsh/zshrc.sh
+
+source $ZSH/oh-my-zsh.sh
